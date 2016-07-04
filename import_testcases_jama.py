@@ -29,8 +29,8 @@ for (dirpath, dirnames, filenames) in os.walk(path):
 # TODO - change the container
 sandbox_id = 747909  # Document ID for Sandbox (currently Ravi's Sandbox)
 sandbox = jama.Interface.get_item(sandbox_id)
-test_set = next(test_case_set for test_case_set in sandbox.get_children(item_type=jama.items.Set)
-                if test_case_set.child_item_type_id == jama.items.SoftwareTestCase.TYPE_ID)
+# test_set = next(test_case_set for test_case_set in sandbox.get_children(item_type=jama.items.Set)
+#                 if test_case_set.child_item_type_id == jama.items.SoftwareTestCase.TYPE_ID)
 
 proj_id = 101  # Sandbox currently
 
@@ -325,8 +325,8 @@ def get_requirements_in_specifications_component(test_requirements):
         pass
 
 
-existing_test_cases = test_set.get_children()  # Obtain the existing software test cases
-test_case_names = [existing_test_cases[x].name for x in range(len(existing_test_cases))]
+#existing_test_cases = test_set.get_children()  # Obtain the existing software test cases
+#test_case_names = [existing_test_cases[x].name for x in range(len(existing_test_cases))]
 
 ############### This code is to create the components and sets required ##############
 miscellaneous_set, sw_risk_set, not_specifications_set = create_sw_test_case_component()
@@ -353,6 +353,9 @@ for test_file in test_files:
     for test in test_list:
         test_count += 1
         test_start_time = time.time()  # Get the current time
+
+        if test_count <= 769:
+            continue
 
         # Replaces the references text to links
         test_list[test] = create_links(test_list[test])
